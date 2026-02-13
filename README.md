@@ -1,0 +1,1 @@
+npx Paracel index.html --https = this generates SSL certificate for our page
