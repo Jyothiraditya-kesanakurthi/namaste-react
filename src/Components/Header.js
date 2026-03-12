@@ -1,6 +1,8 @@
 import { LOGO } from "../Utils/Constants";
+import { useState } from "react";
 
 const Header = () => {
+  const [accessBtn, setAccessBtn] = useState("login");
   return (
     <div className="header">
       <div className="logo">
@@ -20,6 +22,16 @@ const Header = () => {
           <li>
             <a href="#">Register</a>
           </li>
+          <button
+            className="login-btn"
+            onClick={() => {
+              accessBtn === "login"
+                ? setAccessBtn("logout")
+                : setAccessBtn("login");
+            }}
+          >
+            {accessBtn}
+          </button>
         </ul>
       </nav>
     </div>

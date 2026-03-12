@@ -4,7 +4,7 @@ const RestCards = (Props) => {
   const { resData } = Props;
 
   const { cloudinaryImageId, name, cuisines, costForTwo, avgRating, areaName } =
-    resData.card.card.info; // this is deconstructing in js
+    resData; // this is deconstructing in js
 
   return (
     <>
