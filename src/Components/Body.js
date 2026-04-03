@@ -1,6 +1,8 @@
 import RestCards from "./ResCards";
 import { useState, useEffect } from "react";
 import Shimmer from "../Utils/Shimmer";
+import { restDetailsUrlFromSwiggyApi } from "../Utils/Constants";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [restNames, setRestNames] = useState([]); //this is array destructuring
@@ -13,9 +15,8 @@ const Body = () => {
   }, []);
 
   const fetchRealSwiggyData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.7264454&lng=83.30594459999999&collection=83644&tags=layout_CCS_Pizza&sortBy=&filters=&type=rcv2&offset=0&page_type=null",
-    );
+    const data = await fetch(restDetailsUrlFromSwiggyApi);
+    console.log(data);
     console.log("it will render after page rnders");
 
     const json = await data.json();
@@ -67,8 +68,10 @@ const Body = () => {
         </button>
       </div>
       <div className="next">
-        {filteredList.map((restarunt) => (
-          <RestCards key={restarunt.id} resData={restarunt} />
+        {filteredList.map((restaurant) => (
+          <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
+            <RestCards resData={restaurant} />
+          </Link>
         ))}
       </div>
     </>
